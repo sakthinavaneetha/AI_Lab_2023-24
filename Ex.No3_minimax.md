@@ -53,6 +53,7 @@ bfs(visited, graph, '5')
 
 ### Output:
 
+![image](https://github.com/user-attachments/assets/a482cc17-bacc-4ed5-a08b-1256af562ab3)
 
 
 ### Result:
