@@ -80,22 +80,6 @@ for col in numerical_cols:
 Verify that there are no missing values left
 print(data_fin.isnull().sum())
 
-Define replacements for categorical columns to standardize values
-replacements = {
-    'Sex': {'f': 'F', 'm': 'M'},
-    'Jaundice': {'yes': 'Yes', 'no': 'No'},
-    'Family_mem_with_ASD': {'yes': 'Yes', 'no': 'No'},
-    'ASD_traits': {'YES': 'Yes', 'NO': 'No'},
-    'Ethnicity': {
-        'middle eastern': 'Middle Eastern', 'Middle Eastern ': 'Middle Eastern',
-        'mixed': 'Mixed', 'asian': 'Asian', 'black': 'Black',
-        'south asian': 'South Asian', 'PaciFica':'Pacifica', 'Pasifika':'Pacifica'
-    },
-    'Who_completed_the_test': {
-        'Health care professional':'Health Care Professional',
-        'family member':'Family Member', 'Family member':'Family Member'
-    }
-}
 
 Apply replacements to each column, if the column exists in the dataset
 for col, replace_dict in replacements.items():
@@ -143,19 +127,6 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 def train_model(model, X_train, y_train, X_test, y_test):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-
-    # Calculate performance metrics
-    accuracy = accuracy_score(y_test, y_pred)
-
-    # Change to 'weighted' or 'macro' as appropriate
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1 = f1_score(y_test, y_pred, average='weighted')
-
-    # Create a DataFrame to display metrics
-    score_df = pd.DataFrame([[accuracy, precision, recall, f1]],
-                            columns=["Accuracy", "Precision", "Recall", "F1 Score"])
-    return score_df
 
 Example with Logistic Regression
 from sklearn.linear_model import LogisticRegression
@@ -210,8 +181,7 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.callbacks import EarlyStopping
 
-# Assuming y_train and y_test are your target variables
-# Convert labels to binary if they're in string format
+
 y_train = np.where(y_train == "YES", 1, 0)
 y_test = np.where(y_test == "YES", 1, 0)
 
@@ -236,59 +206,7 @@ print(f"Neural Network Accuracy: {nn_eval[1]:.2f}")
 
 
 
-from sklearn.svm import SVC
 
-Initialize the model
-svm_model = SVC(kernel='linear', random_state=42)
-
-Fit the model
-svm_model.fit(x_train, y_train)
-
-Make predictions
-y_pred = svm_model.predict(x_test)
-
-Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
-print(f"SVM Accuracy: {accuracy:.2f}")
-print(classification_report(y_test, y_pred))
-
-
-import xgboost as xgb
-
-Initialize the model
-xgb_model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss')
-
-Fit the model
-xgb_model.fit(x_train, y_train)
-
-Make predictions
-y_pred = xgb_model.predict(x_test)
-
- Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
-print(f"XGBoost Accuracy: {accuracy:.2f}")
-print(classification_report(y_test, y_pred))
-
-
-     
-
-
-#Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
-print(f"KNN Accuracy: {accuracy:.2f}")
-print(classification_report(y_test, y_pred))
-
-     
-
-from sklearn.model_selection import cross_val_score
-
-Example for Random Forest
-rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
-cv_scores = cross_val_score(rf_model, x_train, y_train, cv=5)
-print(f"Random Forest CV Accuracy: {cv_scores.mean():.2f} ± {cv_scores.std():.2f}")
-
-     
-Random Forest CV Accuracy: 1.00 ± 0.00
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
@@ -311,27 +229,10 @@ metrics = {}
 Train and evaluate each model
 for model_name, model in models.items():
     model.fit(x_train, y_train)
-    y_pred = model.predict(x_test)
-
-    # Calculate metrics
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')  # Use 'weighted' for multiclass
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1 = f1_score(y_test, y_pred, average='weighted')
-
-    # Store metrics
-    metrics[model_name] = {
-        'Accuracy': accuracy,
-        'Precision': precision,
-        'Recall': recall,
-        'F1 Score': f1
-    }
-
+    y_pred = model.predict(x_test
 
      
 
-Convert metrics dictionary to DataFrame
-results = pd.DataFrame(metrics).T  # Transpose to get models as rows
 print(results)
 
 
@@ -362,23 +263,7 @@ for model_name, model in models.items():
     accuracies = cross_val_score(model, x_train, y_train, cv=5, scoring='accuracy')
     accuracy = accuracies.mean()
 
-    # Fit the model and predict to get other metrics
-    model.fit(x_train, y_train)
-    y_pred = model.predict(x_test)
-
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1 = f1_score(y_test, y_pred, average='weighted')
-
-    # Append results to the list
-    results_list.append({
-        'Model': model_name,
-        'Accuracy': accuracy,
-        'Precision': precision,
-        'Recall': recall,
-        'F1 Score': f1
-    })
-
+  
 Create a DataFrame from the results list
 results = pd.DataFrame(results_list)
 
