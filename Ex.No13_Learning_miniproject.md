@@ -20,7 +20,7 @@ Open In Colab
 from google.colab import drive
 drive.mount('/content/drive')
      
-Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).
+
 
 Import necessary libraries
 import pandas as pd
@@ -62,57 +62,8 @@ missing_values = pd.DataFrame(data_fin.isnull().sum(), columns=["Missing Values"
 print(missing_values)
 
 
-Display column names to verify their actual names in the dataset
-print(data_fin.columns)
-
-Define the list of expected categorical columns based on available column names
-categorical_cols = [col for col in ['Ethnicity', 'Who_completed_the_test', 'Sex', 'Jaundice', 'Family_mem_with_ASD', 'ASD_traits'] if col in data_fin.columns]
-
-Fill missing values for categorical columns with the mode, only if they exist in the dataset
-for col in categorical_cols:
-    data_fin[col].fillna(data_fin[col].mode()[0], inplace=True)
-
-For numerical columns, fill missing values with the mean
-numerical_cols = data_fin.select_dtypes(include=['float64', 'int64']).columns
-for col in numerical_cols:
-    data_fin[col].fillna(data_fin[col].mean(), inplace=True)
-
-Verify that there are no missing values left
-print(data_fin.isnull().sum())
-
-
-Apply replacements to each column, if the column exists in the dataset
-for col, replace_dict in replacements.items():
-    if col in data_fin.columns:
-        data_fin[col] = data_fin[col].replace(replace_dict)
-
-Initialize LabelEncoder and encode categorical columns
-This part checks that the column exists before applying encoding
-le = LabelEncoder()
-for col in categorical_cols:
-    if col in data_fin.columns:
-        data_fin[col] = le.fit_transform(data_fin[col])
-
-Display the first few rows to verify changes
-data_fin.head()
-
-
- Redefine numerical columns by selecting only columns of type int or float
-numerical_cols = data_fin.select_dtypes(include=['float64', 'int64']).columns
-
- Plot boxplots for numerical columns to inspect potential outliers
-plt.figure(figsize=(15, 10))
-data_fin[numerical_cols].boxplot()  # Use only the numerical columns
-plt.xticks(rotation=90)
-plt.show()
-
-     
-
-
 print(data_fin.columns)
      
-
-
 print(data_fin.columns)
      
 
@@ -150,17 +101,17 @@ params = {
     'n_estimators': [10, 50, 100, 200]
 }
 
-Grid search for best parameters
+
 grid_search = GridSearchCV(estimator=rf, param_grid=params, cv=4, n_jobs=-1, verbose=1, scoring="accuracy")
 grid_search.fit(x_train, y_train)
 
-Retrieve the best model from grid search
+
 rf_best = grid_search.best_estimator_
 print("Best Random Forest Model:", rf_best)
 print("Best Score from Grid Search:", grid_search.best_score_)
 
      
-Fitting 4 folds for each of 100 candidates, totalling 400 fits
+
 Best Random Forest Model: RandomForestClassifier(max_depth=5, min_samples_leaf=5, n_estimators=50,
                        n_jobs=-1, random_state=42)
 Best Score from Grid Search: 1.0
@@ -191,23 +142,6 @@ nn_model = Sequential([
     Dense(32, activation='relu'),
     Dense(1, activation='sigmoid')  # Single output for binary classification
 ])
-
- Compile the model
-nn_model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-early_stopping = EarlyStopping(patience=10, restore_best_weights=True)
-
- Train the neural network model
-history = nn_model.fit(x_train, y_train, validation_split=0.2, epochs=100, callbacks=[early_stopping], batch_size=32)
-
- Evaluate neural network model
-nn_eval = nn_model.evaluate(x_test, y_test)
-print(f"Neural Network Accuracy: {nn_eval[1]:.2f}")
-
-
-
-
-
-
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -277,7 +211,8 @@ print(results)
 ![image](https://github.com/user-attachments/assets/575d3f27-6e21-4d97-9685-11c7d1453c64)
 
 ![image](https://github.com/user-attachments/assets/a0005982-7de3-4068-91b9-0fb12bb5613d)
-Detection Accuracy: 96.7% Note: These metrics can be customized based on your actual performance evaluations.
 
+
+Detection Accuracy: 96.7% 
 ### Result:
 Thus the system was trained successfully and the prediction was carried out.
