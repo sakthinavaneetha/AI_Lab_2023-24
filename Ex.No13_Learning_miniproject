@@ -1,14 +1,12 @@
-# Ex.No: 10 Learning – Use Supervised Learning  
-### DATE:                                                                            
-### REGISTER NUMBER : 
-# Ex.No: 10   - Autism Detection: A Data-Driven Solution
-### DATE:   11.11.2024                                                                         
-### REGISTER NUMBER : 212222040138 
-### AIM: 
+
+#Ex.No: 10   - Autism Detection: A Data-Driven Solution
+###DATE:   11.11.2024                                                                         
+###REGISTER NUMBER : 212222040138 
+###AIM: 
 To write a program to train the classifier for -----------------.
 To write a program to train the classifier for Autism Spectrum Disorder (ASD) prediction.
 
-###  Algorithm:
+###Algorithm:
 Data Preprocessing: Load and clean the data, handling any missing or inconsistent entries.
 Feature Selection: Identify critical features for ASD prediction.
 Model Training: Train a classifier using TensorFlow or PyTorch for deep learning or scikit-learn for traditional ML.
@@ -17,7 +15,7 @@ Model Explainability: Use SHAP or LIME to interpret predictions.
 Save Model: Save the trained model with joblib.
 Program:
 
-### Program:
+###Program:
 
 ```
 from google.colab import drive
@@ -200,15 +198,11 @@ results = pd.DataFrame(results_list)
 
 # Display the results
 print(results)
-
-
-
-
 ```
 
 
-### Output:
+###Output:
 
 Detection Accuracy: 96.7%
-### Result:
+###Result:
 Thus the system was trained successfully and the prediction was carried out.
