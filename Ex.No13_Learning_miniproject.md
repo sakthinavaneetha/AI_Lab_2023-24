@@ -1,6 +1,6 @@
-
-### DATE:                                                                            
-### REGISTER NUMBER : 
+# Ex.No: 10 Autism Detection: A Data-Driven Solution
+### DATE: 11.11.2042                                                                  
+### REGISTER NUMBER : 212222040138
 ### AIM: 
 
 To write a program to train the classifier for Autism Spectrum Disorder (ASD) prediction.
