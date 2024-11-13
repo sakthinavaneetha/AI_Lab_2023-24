@@ -1,5 +1,5 @@
 # Ex.No: 11  Planning –  Block World Problem 
-                                                         
+##DATE : 03.10.2024                                                     
 ### REGISTER NUMBER : 212222040138
 ### AIM: 
 
@@ -60,7 +60,7 @@ Step 10 : Obtain the plan for given problem.<br>
 
 ### Output/Plan:
 
-![image](https://github.com/user-attachments/assets/b5081ec3-dd10-4bf4-aea3-74d8215f741d)
+
 
 ![image](https://github.com/user-attachments/assets/3c2cc292-a4b0-4058-b8fc-9c855d9a69ea)
 
