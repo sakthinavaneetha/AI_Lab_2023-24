@@ -1,6 +1,6 @@
 # Ex.No: 4   Implementation of Alpha Beta Pruning 
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### DATE:22.08.2024                                                                 
+### REGISTER NUMBER : 212222040238
 ### AIM: 
 Write a Alpha beta pruning algorithm to find the optimal value of MAX Player from the given graph.
 ### Steps:
@@ -42,12 +42,6 @@ print("Following is the Breadth First Search")
 bfs(visited, graph, '5')
 
 ```
-
-
-
-
-
-
 
 
 ### Output:
