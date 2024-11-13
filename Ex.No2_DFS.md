@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/1aabc235-5a59-4f22-b1f5-975c8786a954)# Ex.No: 2  Implementation of Depth First Search
+# Ex.No: 2  Implementation of Depth First Search
 ### DATE:   1.08.2024                                                                         
 ### REGISTER NUMBER : 212222040138
 ### AIM: 
